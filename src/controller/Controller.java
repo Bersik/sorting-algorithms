@@ -43,15 +43,21 @@ public class Controller {
                     model.bubbleSort();
                     break;
                 case 4:
-                    model.changeSort();
+                    model.insertionSort();
                     break;
                 case 5:
                     model.mergeSort();
                     break;
                 case 6:
-                    model.recursionSort();
+                    model.quickSort();
                     break;
                 case 7:
+                    model.cocktailSort();
+                    break;
+                case 8:
+                    model.heapSort();
+                    break;
+                case 9:
                     return;
                 default:
                     view.printMessage(View.WRONG_MENU_ITEM);
@@ -67,11 +73,13 @@ public class Controller {
             view.printMessage(View.WRONG_INPUT_INT_DATA + View.INPUT_INT_DATA);
             sc.next();
         }
-        return sc.nextInt();
+        int val = sc.nextInt();
+        sc.nextLine();
+        return val;
     }
 
     private int[] readArray(Scanner sc) {
-        String line = inputArray(sc);
+        String line = inputArray(sc).replaceAll("[^\\d]+", " ");
         String[] strArray = line.split(" ");
         int[] result = new int[strArray.length];
         for (int i = 0; i < strArray.length; i++) {
@@ -85,9 +93,9 @@ public class Controller {
         String line;
         while (true) {
             line = sc.nextLine();
-            if (line.matches(ARRAY_PATTERN))
+            if (line.matches(ARRAY_PATTERN)) {
                 return line;
-            else {
+            } else {
                 view.printMessage(View.INPUT_ERROR);
             }
         }
